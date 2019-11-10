@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 import DayRow from './DayRow'
 import moment from 'moment'
+import { capitalize } from '../modules/textHelpers';
 
 export default class Month extends React.Component {
 	constructor(props) {
@@ -86,7 +87,7 @@ export default class Month extends React.Component {
 					if(untilDate && untilDate.format('YYYYMMDD') == currDate.format('YYYYMMDD')){
 						dayObject.type = 'last';
 					}
-					if((startDate && startDate.format('YYYYMMDD') < currDate.format('YYYYMMDD')) && 
+					if((startDate && startDate.format('YYYYMMDD') < currDate.format('YYYYMMDD')) &&
 						(untilDate && untilDate.format('YYYYMMDD') > currDate.format('YYYYMMDD')))
 						dayObject.type = 'between';
 
@@ -97,7 +98,7 @@ export default class Month extends React.Component {
 				else{
 					if(startDate && untilDate &&
 						(
-							startDate.format('YYYYMMDD') < currDate.format('YYYYMMDD')  && 
+							startDate.format('YYYYMMDD') < currDate.format('YYYYMMDD')  &&
 							untilDate.format('YYYYMMDD') >= currDate.format('YYYYMMDD')
 						)
 					)
@@ -118,7 +119,7 @@ export default class Month extends React.Component {
 		const dayStack = this.getDayStack(moment(month, 'YYYYMM'));
 		return (
 			<View>
-				<Text style={{fontSize: 14, padding: 14}}>{moment(month, 'YYYYMM').format("MMMM YYYY")}</Text>
+				<Text style={{fontSize: 16, padding: 14}}>{ capitalize(moment(month, 'YYYYMM').format("MMMM YYYY")) }</Text>
 				<View>
 					{
 						dayStack.map((days, i) => {
